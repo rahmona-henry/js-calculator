@@ -1,8 +1,42 @@
 
 #display {
-
+ background-color: #FFF;
+ border: 3px solid black;
  border-radius: 10px;
  height: 70px;
  width: 300px; 
+ margin: 0 auto;
+ margin-bottom: 10px;
+ 
+}
+
+#calculator {
+  border: 3px solid black;
+  border-radius: 10px;
+  height: 460px;
+  width: 310px;
+  margin: 10px auto; 
+  padding: 5px;
+}
+
+#numbers {
+border-radius: 10px;
+
 
 }
+
+  background:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#dcdcdc));
+  background: -moz-linear-gradient(top, #ededed, #dcdcdc);
+  border-radius: 10px;
+  color: 000000;
+  display: block;
+  float: left;
+  font-size: 43px;
+  height: 50px;
+  margin: 5px 15px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+ 
+
