@@ -1,43 +1,55 @@
-$(document).ready(function () {
+$(document).ready(function(){
+  //var testNumLength = function(number) {
+        //if (number.length > 9) {
+            //totaldiv.text(number.substr(number.length-9,9));
+            //if (number.length > 15) {
+                //number = "";
+                //totaldiv.text("Err");
+           // }
+       // } 
+   // };
+    var number = "";
+    var newnumber = "";
+    var operator = "";
+    var display  = $("#display");
+    //display.text("0");
 
-var firstNum = '';
-var secondNum = '';
-var operator = '';
-var display = $('#display');
+    $("#numbers a").click(function(){
+    number += $(this).text();
+    display.text(number);
+    //testNumLength(number);
+    });
+    $("#operators a").not("#equals").click(function(){
+    operator = $(this).text();
+    newnumber = number;
+    number = "";
+    display.text(operator);
+    });
 
+    //$("#clear,#clearall").click(function(){
+    //number = "";
+    //totaldiv.text("0");
+    //if ($(this).attr("id") === "clearall") {
+      //newnumber = "";
+    //}
+   // });
 
-
-
- $('#numbers a').click(function displayNumbers(){
-   firstNum = $(this).text();
-   display.text(firstNum);
-   //secondNum = $(this).text();
-   //display.text(secondNum);
-
+ 
+    $("#equals").click(function(){
+      if (operator === "+"){
+        number = (parseInt(number, 10) + parseInt(newnumber,10)).toString(10);
+      } else if (operator === "-"){
+        number = (parseInt(newnumber, 10) - parseInt(number,10)).toString(10);
+      } else if (operator === "/"){
+        number = (parseInt(newnumber, 10) / parseInt(number,10)).toString(10);
+      } else if (operator === "*"){
+        number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
+      }
+      display.text(number);
+      //testNumLength(number);
+      //number = "";
+      //newnumber = "";
+    });
 });
 
-
- $('#operators a').click(function displayNumbers(){
-   operator = $(this).text();
-   secondNum = firstNum;
-   firstNum = '';
-   display.text(operator);
-});
-
-$("#equals").click(function(){
-if (operator === "+"){
-firstNum = (parseInt(firstNum, 10) + parseInt(secondNum,10)).toString(10);
-} else if (operator === "-"){
-firstNum = (parseInt(secondNum, 10) - parseInt(firstNum,10)).toString(10);
-//} else if (operator === "/"){
-//number = (parseInt(newnumber, 10) / parseInt(number,10)).toString(10);
-//} else if (operator === "*"){
-//number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
-}
-display.text(firstNum);
-})
-//testNumLength(number);
-//number = "";
-//newnumber = "";
-});
 
