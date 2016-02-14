@@ -1,24 +1,27 @@
 $(document).ready(function(){
-  var testNumLength = function(number) {
-        if (number.length > 9) {
-            totaldiv.text(number.substr(number.length-9,9));
-            if (number.length > 15) {
-                number = "";
-                totaldiv.text("Err");
-           }
-        } 
-   };
+
+  //var testNumLength = function(number) {
+        //if (number.length > 9) {
+            //display.text(number.substr(number.length-9,9));
+            //if (number.length > 15) {
+                //number = "";
+                //display.text("Error");
+           //}
+        //} 
+   //};
+
     var number = "";
     var newnumber = "";
     var operator = "";
     var display  = $("#display");
-    //display.text("0");
+    display.text("0");
 
     $("#numbers a").click(function(){
-    number += $(this).text();
+    number = $(this).text();
     display.text(number);
     //testNumLength(number);
     });
+
     $("#operators a").not("#equals").click(function(){
     operator = $(this).text();
     newnumber = number;
@@ -28,11 +31,11 @@ $(document).ready(function(){
 
     $("#clear,#clearall").click(function(){
     number = "";
-    totaldiv.text("0");
+    display.text("0");
     if ($(this).attr("id") === "clearall") {
-      newnumber = "";
-    }
-   });
+    newnumber = "";
+   }
+  });
 
  
     $("#equals").click(function(){
@@ -46,8 +49,8 @@ $(document).ready(function(){
         number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
       }
       display.text(number);
-      testNumLength(number);
-      number = "";
-      newnumber = "";
+      //testNumLength(number);
+      //number = "";
+      //newnumber = "";
     });
 });
