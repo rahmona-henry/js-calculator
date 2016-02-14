@@ -1,13 +1,13 @@
 $(document).ready(function(){
-  //var testNumLength = function(number) {
-        //if (number.length > 9) {
-            //totaldiv.text(number.substr(number.length-9,9));
-            //if (number.length > 15) {
-                //number = "";
-                //totaldiv.text("Err");
-           // }
-       // } 
-   // };
+  var testNumLength = function(number) {
+        if (number.length > 9) {
+            totaldiv.text(number.substr(number.length-9,9));
+            if (number.length > 15) {
+                number = "";
+                totaldiv.text("Err");
+           }
+        } 
+   };
     var number = "";
     var newnumber = "";
     var operator = "";
@@ -26,13 +26,13 @@ $(document).ready(function(){
     display.text(operator);
     });
 
-    //$("#clear,#clearall").click(function(){
-    //number = "";
-    //totaldiv.text("0");
-    //if ($(this).attr("id") === "clearall") {
-      //newnumber = "";
-    //}
-   // });
+    $("#clear,#clearall").click(function(){
+    number = "";
+    totaldiv.text("0");
+    if ($(this).attr("id") === "clearall") {
+      newnumber = "";
+    }
+   });
 
  
     $("#equals").click(function(){
@@ -46,10 +46,8 @@ $(document).ready(function(){
         number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
       }
       display.text(number);
-      //testNumLength(number);
-      //number = "";
-      //newnumber = "";
+      testNumLength(number);
+      number = "";
+      newnumber = "";
     });
 });
-
-
