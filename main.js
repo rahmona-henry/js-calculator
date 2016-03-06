@@ -1,8 +1,8 @@
 $(document).ready(function () { 
   var testNumLength = function (number) {
-    if (number.length > 9) {
-      display.text(number.substr(number.length - 9, 9));
-      if (number.length > 8) {
+    if (latestNumber.length > 8) {
+      display.text(number.substr(number.length - 8, 8));
+      if (latestNumber.length > 8) {
         number = "";
         display.text("Error");
       }
@@ -15,12 +15,10 @@ $(document).ready(function () {
     } else if (c === "-") {
       return a - b;
     }
-
-    if (c === " * ") {
+    if (c === "*") {
       return a * b;
    }
-
-   if (c === " / ") {
+   if (c === "/") {
      return a / b;
    }
   };
