@@ -1,53 +1,75 @@
-$(document).ready(function(){
-  var testNumLength = function(number) {
-        if (number.length > 9) {
-            totaldiv.text(number.substr(number.length-9,9));
-            if (number.length > 15) {
-                number = "";
-                totaldiv.text("Err");
-           }
-        } 
-   };
-    var number = "";
-    var newnumber = "";
-    var operator = "";
-    var display  = $("#display");
-    //display.text("0");
-
-    $("#numbers a").click(function(){
-    number += $(this).text();
-    display.text(number);
-    //testNumLength(number);
-    });
-    $("#operators a").not("#equals").click(function(){
-    operator = $(this).text();
-    newnumber = number;
-    number = "";
-    display.text(operator);
-    });
-
-    $("#clear,#clearall").click(function(){
-    number = "";
-    totaldiv.text("0");
-    if ($(this).attr("id") === "clearall") {
-      newnumber = "";
-    }
-   });
-
- 
-    $("#equals").click(function(){
-      if (operator === "+"){
-        number = (parseInt(number, 10) + parseInt(newnumber,10)).toString(10);
-      } else if (operator === "-"){
-        number = (parseInt(newnumber, 10) - parseInt(number,10)).toString(10);
-      } else if (operator === "/"){
-        number = (parseInt(newnumber, 10) / parseInt(number,10)).toString(10);
-      } else if (operator === "*"){
-        number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
+$(document).ready(function () { 
+  var testNumLength = function (number) {
+    if (latestNumber.length > 8) {
+      display.text(number.substr(number.length - 8, 8));
+      if (latestNumber.length > 8) {
+        number = "";
+        display.text("Error");
       }
-      display.text(number);
+    } 
+  };
+
+  function calculate (a, b, c) {
+    if (c === "+") {
+      return a + b;
+    } else if (c === "-") {
+      return a - b;
+    }
+    if (c === "*") {
+      return a * b;
+   }
+   if (c === "/") {
+     return a / b;
+   }
+  };
+
+  var number = "";
+  var latestNumber = "";
+  var operator = "";
+  var result = 0;
+  var x = 0;
+  var y = 0;
+  var display  = $("#display");
+  display.text(0);
+
+  $("#clear").click(function () {
+    latestNumber = "";
+    display.text(0);
+  });
+
+  $("#clearall").click(function () {
+    number = "";
+    latestNumber = "";
+    display.text(0);
+  });
+
+    $("#numbers a").not("#clear,#clearall").click(function () {
+      latestNumber += $(this).text();
+      display.text(latestNumber);
       testNumLength(number);
-      number = "";
-      newnumber = "";
+    });
+
+    $("#operators a").not("#equals").click(function () {
+      operator = $(this).text();
+      if (number === "") {
+        display.text(latestNumber + operator);
+        number = latestNumber;
+        latestNumber = "";
+      }else {
+
+        x = parseInt(number);
+        y = parseInt(latestNumber);
+        result = calculate(x, y, operator);
+        display.text(result + operator);
+        number = result.toString();
+        latestNumber = "";
+      }
+    });
+    $("#equals").click(function () {
+      x = parseInt(number);
+      y = parseInt(latestNumber);
+      result = calculate(x, y, operator);
+      display.text(result);
+      testNumLength(number);
     });
 });
